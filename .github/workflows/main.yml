@@ -1,1 +1,53 @@
-
+name: etl pipeline
+on:
+    push:
+        branches:
+            - main
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job1..'
+    job2:
+        runs-on: ubuntu-latest
+        needs: job1
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job2..'
+    job3:
+        runs-on: ubuntu-latest
+        needs: job1
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job3..'
+    job4:
+        runs-on: ubuntu-latest
+        needs: job2
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job4..'
+    job5:
+        runs-on: ubuntu-latest
+        needs: job3
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job5..'
+    job6:
+        runs-on: ubuntu-latest
+        needs: [job4, job5]
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Print message
+              run: echo 'job6..'
